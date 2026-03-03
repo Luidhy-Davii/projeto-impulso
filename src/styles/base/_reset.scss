@@ -1,0 +1,66 @@
+@use '../abstracts/variables' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // Suporte para Firefox (Cor da barra e do fundo)
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg-main);
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+    // Reserva o espaço do scrollbar desde o início, evitando o pulo
+    scrollbar-gutter: stable;
+}
+
+body {
+    background-color: var(--color-bg-main);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: var(--font-size-md);
+    overflow-x: hidden // caso o layout quebre, ele não vai permitir a barra lateral
+}
+
+body.loading {
+    overflow: hidden;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+// personalizando o scrollbar
+::-webkit-scrollbar {
+    width: 10px; 
+}
+
+// 2. O "trilho" da barra (o fundo)
+::-webkit-scrollbar-track {
+    background: var(--color-bg-main); 
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary); 
+    border-radius: 10px; 
+}

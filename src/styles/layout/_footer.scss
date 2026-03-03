@@ -1,0 +1,183 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Footer 
+.site-footer {
+    background: var(--color-bg-secondary); // Um tom sutilmente diferente do fundo principal
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-section) 0 var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+    @include laser(30%, 2px, var(--color-primary));
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr; // Mobile First: Uma coluna empilhada
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+
+    // No PC, divide em 3 colunas (A logo ocupa mais espaço que os links)
+    @include desktop {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+// Coluna 1: Branding
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+
+    .logo-footer {
+        @include tipografia(var(--color-white), var(--font-display), var(--font-size-xxl), null, uppercase, -1px);
+        margin: 0;        
+    }
+
+    .footer-desc {
+        color: var(--color-gray);
+        font-size: var(--font-size-sm);
+        line-height: 1.6;
+        max-width: 300px;
+    }
+
+    // Botão SOS customizado para o Footer
+    .sos-btn-footer {
+        margin-top: 1rem;
+        color: var(--color-alert);
+        border-color: var(--border-sos); // Borda vermelha transparente
+        background: var(--background-sos);
+        width: fit-content; // Não deixa o botão esticar a tela toda
+        
+        &:hover, &:focus-visible {
+            background: var(--color-alert);
+            color: var(--color-white);
+            box-shadow: 0 5px 20px var(--border-sos);
+            border-color: var(--color-alert);
+        }
+    }
+}
+
+// Colunas 2 e 3: Links
+.footer-links-group {
+    .footer-title {
+        @include tipografia(var(--color-white), var(--font-display), var(--font-size-lg), null, null, null);
+        margin-bottom: var(--spacing-md);
+        position: relative;
+        padding-bottom: 0.5rem;
+
+        // Sublinhado Laranja Elegante
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--color-primary);
+        }
+    }
+
+    .footer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        li a {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--color-gray);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            transition: all 0.3s var(--ease-smooth);
+            outline: none;
+
+            i {
+                font-size: 1.5em;
+                color: var(--color-primary);
+                transition: transform 0.3s var(--ease-smooth);
+            }
+
+            // INTERAÇÃO AO PASSAR O MOUSE NOS LINKS
+            &:hover, &:focus-visible {
+                color: var(--color-white);
+                transform: translateX(5px); // Dá um passinho para a direita
+
+                i {
+                    transform: scale(1.2);
+                    color: var(--color-white); // Ícone fica branco no hover
+                }
+            }
+        }
+    }
+}
+
+// Parte inferior (Copyright e Desenvolvedor)
+.footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+
+    @include desktop {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    p {
+        color: var(--color-gray);
+        font-size: var(--font-size-xs);
+        margin: 0;
+        opacity: 0.7;
+    }
+
+    .developer-tag {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        i {
+            color: var(--color-alert); // Coração vermelho
+            animation: pulseHeart 1.5s infinite;
+        }
+
+        // Estilização do seu link de portfólio
+        .dev-link {
+            color: var(--color-white); // Começa branco
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s var(--ease-smooth);
+            position: relative;
+            outline: none;
+
+            // Efeito Hover Premium
+            &:hover, &:focus-visible {
+                color: var(--color-primary); // Fica laranja Impulso
+                text-shadow: 0 0 15px var(--color-primary-glow); // Brilho neon sutil
+                transform: translateY(-2px); // Dá um levíssimo pulo
+            }
+        }
+    }
+}
+
+// Animação do coração batendo
+@keyframes pulseHeart {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+

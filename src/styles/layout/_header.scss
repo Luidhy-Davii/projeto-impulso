@@ -1,0 +1,153 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.cabecalho {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    // Altura fixa definida nas variáveis
+    height: var(--header-height); 
+    padding: 0 5%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // Z-Index alto para ficar acima do menu
+    z-index: $z-header + 10; 
+    backdrop-filter: blur(10px);
+    background: rgba(3, 3, 3, 0.9);
+    border-bottom: 1px solid var(--color-border);
+    transition: 0.3s;
+
+    &--logo {
+        @include tipografia(var(--color-white), var(--font-display), var(--font-size-xxl), 900, null, -1px);
+        position: relative;
+        z-index: $z-header + 11; //Usou o 11 pois quando o menu burguer é acessado, ele desce como uma manta. Assim, cobrindo o nome impulso. 
+    }
+}
+
+// Menu burguer
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+    gap: 6px;
+    padding: 10px 0 10px 10px; 
+    position: relative;
+    z-index: $z-header + 11;
+    font-size: 0;
+    color: transparent;
+
+    .bar {
+        width: 30px;
+        height: 2px;
+        background: var(--color-white);
+        transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        border-radius: 2px;
+    }
+
+    &.active {
+        .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .bar:nth-child(2) { opacity: 0; width: 0; }
+        .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    }
+
+    @include desktop { display: none; } //Quando acessado pelo pc, o menu some.
+}
+
+// Lista de navegação
+.nav--list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--color-bg-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;     
+    justify-content: center; 
+    gap: var(--spacing-md); 
+    padding: 0;
+    margin: 0;
+    opacity: 0; // Para animação
+    visibility: hidden;
+    pointer-events: none;
+    z-index: $z-header; 
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+
+    &__links {
+        @include tipografia(var(--color-white), null, var(--font-size-lg), 700, uppercase, 3px);
+        text-align: center;
+        text-decoration: none;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: 0.3s;
+
+        &:hover { color: var(--color-primary); }
+    }
+
+    &.active .nav--list__links {
+        transform: translateY(0);
+        opacity: 1;
+        // Usando a variável de animação suave
+        transition: transform 0.5s var(--ease-smooth), opacity 0.5s ease;
+        
+        &:nth-child(1) { transition-delay: 0.1s; }
+        &:nth-child(2) { transition-delay: 0.2s; }
+        &:nth-child(3) { transition-delay: 0.3s; }
+        &:nth-child(4) { transition-delay: 0.4s; }
+        &:nth-child(5) { transition-delay: 0.5s; }
+    }
+
+    // Botão 'participar'
+    .btn-nav {
+        @include tipografia(var(--color-primary), null, var(--font-size-md), null, null, 2px);
+        margin-top: 2rem;
+        padding: 1.2rem 4rem;
+        border: 1px solid var(--color-primary);
+        border-radius: var(--border-radius-pill);
+        
+        &:hover {
+            background: var(--color-primary);
+            color: var(--color-preto);
+            box-shadow: 0 0 20px var(--color-primary-glow);
+        }
+    }
+
+    //Desktop
+    @include desktop {
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: var(--spacing-md); 
+        z-index: auto;
+
+        &__links {
+            @include tipografia(null, null, var(--font-size-sm), 600, null, 1px);
+            font-weight: 600;
+            opacity: 0.8;
+            &:hover { opacity: 1; }
+        }
+
+        .btn-nav {
+            margin-top: 0;
+            padding: 0.8rem 2rem;
+            font-size: var(--font-size-sm); 
+            border-radius: var(--border-radius-sm);
+        }
+    }
+}

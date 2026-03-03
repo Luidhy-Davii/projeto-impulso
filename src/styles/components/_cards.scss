@@ -1,0 +1,711 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// 1. VERSE CARD (Seção Sobre)
+// ==========================================================================
+.verse-card {
+    background: linear-gradient(145deg, #111111, #080808);
+    border: 1px solid var(--color-border);
+    padding: clamp(3rem, 5vw, 5rem);
+    border-radius: var(--border-radius-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary);
+    }
+
+    .verse-icon {
+        font-size: clamp(3rem, 4vw, 4rem);
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+    }
+
+    .verse-text {
+        font-size: var(--font-size-lg);
+        color: var(--color-white);
+        font-style: italic;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+    }
+
+    .verse-ref {
+        font-size: var(--font-size-sm);
+        color: var(--color-primary);
+        letter-spacing: 2px;
+        font-weight: 700;
+        margin: 0;
+    }
+}
+
+// ==========================================================================
+// 2. GRIDS BASE (Pilares e Voluntariado)
+// ==========================================================================
+.importancia-grid,
+.vol-grid {
+    display: grid;
+    gap: var(--spacing-sm);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+// ==========================================================================
+// 3. STANDARD CARD (Pilares) - Premium Glassmorphism
+// ==========================================================================
+.card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: clamp(3rem, 4vw, 4rem);
+    border-radius: var(--border-radius-card);
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    text-decoration: none;
+    outline: none;
+
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+
+    .card-header i, h3, p {
+        transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    &:hover, &:focus-visible {
+        border-color: rgba(255, 88, 0, 0.4);
+        background: linear-gradient(145deg, rgba(255, 88, 0, 0.08), rgba(0, 0, 0, 0));
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 88, 0, 0.1);
+
+        .card-header i {
+            transform: scale(1.1);
+            color: var(--color-white);
+            background: var(--color-primary);
+        }
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        i {
+            font-size: clamp(2.5rem, 3vw, 3.2rem);
+            color: var(--color-primary);
+            padding: 1.2rem;
+            background: rgba(255, 88, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h3 {
+            font-size: var(--font-size-xl);
+            margin: 0;
+            color: var(--color-white);
+            letter-spacing: 1px;
+        }
+    }
+
+    p {
+        font-size: var(--font-size-md);
+        color: var(--color-gray);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    &.special-link {
+        border-color: rgba(112, 0, 255, 0.3);
+        background: linear-gradient(145deg, rgba(112, 0, 255, 0.05), transparent);
+
+        .card-header i {
+            color: var(--color-secondary);
+            background: rgba(112, 0, 255, 0.1);
+        }
+
+        &:hover, &:focus-visible {
+            background: var(--color-secondary);
+            border-color: var(--color-secondary);
+            box-shadow: 0 10px 40px rgba(112, 0, 255, 0.5);
+
+            .card-header i {
+                background: transparent;
+                color: var(--color-white);
+                transform: scale(1.2); 
+            }
+            h3, p { color: var(--color-white); }
+        }
+    }
+
+    &.prayer-link {
+        border-color: rgba(255, 88, 0, 0.3);
+        background: linear-gradient(145deg, rgba(255, 88, 0, 0.05), transparent);
+
+        &:hover, &:focus-visible {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 40px var(--color-primary-glow);
+
+            .card-header i {
+                background: transparent;
+                color: var(--color-preto);
+                transform: scale(1.2);
+            }
+            h3, p { color: var(--color-preto); }
+        }
+    }
+}
+
+// ==========================================================================
+// 4. TES (Templo do Espírito Santo)
+// ==========================================================================
+.tes-wrapper {
+    background: linear-gradient(145deg, rgba(20, 20, 20, 0.6), rgba(5, 5, 5, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border); 
+    border-radius: var(--border-radius-card);
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 10%;
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+        box-shadow: 0 -5px 20px var(--color-primary-glow);
+    }
+
+    .tes-tag {
+        display: inline-block;
+        color: var(--color-primary);
+        border: 1px solid rgba(255, 88, 0, 0.2);
+        background: rgba(255, 88, 0, 0.05);
+        padding: 0.8rem 2.5rem;
+        border-radius: var(--border-radius-pill);
+        font-size: var(--font-size-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: var(--spacing-md);
+        box-shadow: 0 0 15px rgba(255, 88, 0, 0.05);
+    }
+
+    .tes-title {
+        font-size: clamp(3rem, 5vw, 5rem);
+        margin-bottom: var(--spacing-md);
+        letter-spacing: -1px;
+        color: var(--color-white);
+    }
+
+    .tes-content {
+        p {
+            color: var(--color-gray);
+            font-size: var(--font-size-md);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-sm);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+
+            &:last-child { margin-bottom: 0; }
+        }
+
+        .txt-destaque {
+            color: var(--color-primary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tes-highlight {
+            color: var(--color-white);
+            font-weight: 700;
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid transparent;
+            border-image: linear-gradient(90deg, transparent, var(--color-border), transparent) 1;
+        }
+    }
+}
+
+// ==========================================================================
+// 5. AGENDA SEMANAL
+// ==========================================================================
+.agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-width: 1000px;
+    margin: 0 auto;
+
+    @include desktop {
+        &:hover .agenda-card:not(:hover) {
+            opacity: 0.3;
+            filter: grayscale(100%) brightness(0.8);
+            transform: scale(0.98);
+        }
+    }
+}
+
+.agenda-card {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(15, 15, 15, 0.9));
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-card);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column; 
+    gap: var(--spacing-sm);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s var(--ease-smooth);
+
+    // Mobile (Padrão Aceso)
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 4px; 
+        background: var(--day-color);
+        box-shadow: 0 0 10px var(--day-color); 
+        transition: width 0.4s var(--ease-smooth), box-shadow 0.4s ease;
+    }
+
+    .agenda-day-wrapper {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        min-width: 220px;
+        transition: transform 0.5s var(--ease-smooth);
+
+        .agenda-icon {
+            font-size: var(--font-size-xl);
+            color: var(--day-color);
+            transition: all 0.5s ease;
+        }
+
+        .agenda-day {
+            font-family: var(--font-display);
+            font-size: var(--font-size-xl);
+            font-weight: 900;
+            color: var(--day-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.5s var(--ease-smooth);
+            -webkit-text-stroke: 0; 
+        }
+    }
+
+    .agenda-details {
+        flex: 1;
+
+        .agenda-event {
+            font-family: var(--font-display);
+            font-size: var(--font-size-lg);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .time-badge {
+            font-size: var(--font-size-xs);
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--day-color);
+            background: var(--color-card-glass);
+            border-radius: var(--border-radius-pill);
+            color: var(--day-color); 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+        }
+
+        .agenda-desc {
+            color: var(--color-gray);
+            font-size: var(--font-size-md);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .agenda-sublist {
+            padding: 0;
+            margin: 0;
+
+            li {
+                color: var(--color-gray);
+                font-size: var(--font-size-md);
+                margin-bottom: 0.8rem;
+                position: relative;
+                padding-left: 1.5rem;
+                line-height: 1.4;
+
+                &::before {
+                    content: '•';
+                    position: absolute;
+                    left: 0;
+                    color: var(--day-color); 
+                    transition: color 0.4s ease;
+                }
+            }
+        }
+    }
+
+    // Desktop Hover
+    @include desktop {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+
+        &::before { width: 0; box-shadow: none; }
+        
+        .agenda-day-wrapper {
+            .agenda-icon { color: #444; } 
+            .agenda-day {
+                color: #555;
+                -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            }
+        }
+
+        .agenda-details {
+            .time-badge {
+                background: transparent;
+                color: var(--color-gray);
+                border-color: var(--color-border);
+            }
+            .agenda-sublist li::before { color: var(--color-border); }
+        }
+
+        &:hover, &:focus-visible {
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.8));
+            border-color: var(--color-border);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+
+            &::before { width: 4px; box-shadow: 0 0 15px var(--day-color); }
+
+            .agenda-day-wrapper {
+                transform: translateX(10px); 
+
+                .agenda-icon {
+                    color: var(--day-color);
+                    transform: rotate(-10deg) scale(1.1);
+                    filter: drop-shadow(0 0 8px var(--day-color));
+                }
+                
+                .agenda-day {
+                    color: var(--day-color); 
+                    -webkit-text-stroke: 0;
+                    text-shadow: 0 0 15px var(--day-color), 0 0 30px var(--day-color);
+                }
+            }
+
+            .agenda-details {
+                .time-badge {
+                    background: var(--color-card-glass);
+                    color: var(--day-color);
+                    border-color: var(--day-color);
+                    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+                }
+                .agenda-sublist li::before { color: var(--day-color); }
+            }
+        }
+    }
+}
+
+// ==========================================================================
+// 6. VOL CARD (Seção Servir / Envolva-se)
+// ==========================================================================
+.vol-card {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+    cursor: pointer;
+    
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.005));
+    border: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: var(--border-radius-card);
+    padding: var(--spacing-md);
+    text-align: center;
+    outline: none;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 300px;
+
+    transition: all 0.4s var(--ease-smooth);
+
+    .vol-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--spacing-sm);
+        border: 1px solid var(--color-border);
+        transition: all 0.4s var(--ease-smooth);
+
+        .vol-icon {
+            font-size: clamp(2.5rem, 3vw, 3.2rem);
+            color: var(--color-gray);
+            transition: all 0.4s var(--ease-smooth);
+        }
+    }
+
+    .vol-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size-lg);
+        color: var(--color-white);
+        margin-bottom: 1rem;
+        letter-spacing: 0.5px;
+    }
+
+    .vol-desc {
+        color: var(--color-gray);
+        font-size: var(--font-size-sm); 
+        line-height: 1.5;
+        margin-bottom: var(--spacing-sm);
+        flex: 1; 
+    }
+
+    .vol-action {
+        font-size: var(--font-size-xs);
+        color: var(--color-primary); 
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 1; 
+        transition: all 0.4s var(--ease-smooth);
+
+        i {
+            font-size: 1.4em;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &:hover, &:focus-visible {
+        background: linear-gradient(145deg, rgba(255, 88, 0, 0.05), rgba(0, 0, 0, 0));
+        border-color: rgba(255, 88, 0, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 88, 0, 0.1);
+
+        .vol-icon-wrapper {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            transform: scale(1.1);
+
+            .vol-icon { color: var(--color-preto); }
+        }
+
+        .vol-action {
+            i { transform: translateX(5px); } 
+        }
+    }
+}
+
+// ==========================================================================
+// 7. CTA CARDS (Faça Parte / Comunidade / Liderança)
+// ==========================================================================
+// ==========================================================================
+// 7. CTA CARDS (Faça Parte / Comunidade / Liderança) - Masterpiece Responsivo
+// ==========================================================================
+.cta-grid {
+    display: grid;
+    // MOBILE FIRST: 1 coluna fixa (Um abaixo do outro, perfeito e espaçoso)
+    grid-template-columns: 1fr; 
+    gap: var(--spacing-sm);
+    max-width: 1000px;
+    margin: 0 auto;
+
+    // A mágica acontece a partir do Tablet: vira lado a lado
+    @media (min-width: $tablet) {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+.cta-box {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(10, 10, 10, 0.8));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-card);
+    
+    // Padding fluido: menor no mobile para o card não ficar gigante, enorme no PC
+    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+    
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.4s var(--ease-smooth);
+    position: relative;
+    overflow: hidden;
+    outline: none;
+
+    // Efeito de brilho de fundo (Glow radial mágico)
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, var(--glow-color) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.5s var(--ease-smooth);
+        z-index: 0;
+        pointer-events: none; 
+    }
+
+    &.primary-glow {
+        --glow-color: rgba(255, 88, 0, 0.08);
+        border-top: 1px solid rgba(255, 88, 0, 0.2);
+        .cta-icon-wrapper i { color: var(--color-primary); }
+    }
+
+    &.secondary-glow {
+        --glow-color: rgba(112, 0, 255, 0.08); 
+        border-top: 1px solid rgba(112, 0, 255, 0.2);
+        .cta-icon-wrapper i { color: var(--color-secondary); }
+    }
+
+    &:hover, &:focus-visible {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        border-color: rgba(255, 255, 255, 0.1);
+        
+        &::before { opacity: 1; } 
+        
+        .cta-icon-wrapper { 
+            transform: scale(1.1); 
+            background: var(--color-card-glass);
+        }
+    }
+
+    > * { z-index: 1; position: relative; }
+
+    .cta-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        border: 1px solid var(--color-border);
+        transition: all 0.4s var(--ease-smooth);
+
+        i { font-size: 3.5rem; }
+    }
+
+    .cta-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size-xl);
+        color: var(--color-white);
+        margin: 0;
+    }
+
+    .cta-desc {
+        color: var(--color-gray);
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+        margin-bottom: 2rem;
+        flex: 1; 
+    }
+
+    .cta-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: auto;
+    }
+
+    .btn-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        
+        // Área de toque perfeita para dedos no mobile (Acessibilidade)
+        min-height: 54px; 
+        padding: 1.2rem 2rem;
+        
+        border-radius: var(--border-radius-pill);
+        font-size: var(--font-size-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: all 0.3s var(--ease-smooth);
+        
+        // Impede que o texto quebre e fique feio
+        white-space: nowrap; 
+
+        i { font-size: 1.4em; }
+
+        &.btn-solid {
+            background: var(--color-primary);
+            color: var(--color-preto);
+            border: 1px solid var(--color-primary);
+
+            &:hover, &:focus-visible {
+                background: transparent;
+                color: var(--color-primary);
+                box-shadow: 0 0 25px rgba(255, 88, 0, 0.2);
+            }
+        }
+
+        &.btn-outline {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--color-white);
+            border: 1px solid var(--color-border);
+
+            &:hover, &:focus-visible {
+                border-color: var(--color-secondary); 
+                color: var(--color-white);
+                background: rgba(112, 0, 255, 0.1); 
+                transform: translateX(5px); 
+            }
+        }
+    }
+}

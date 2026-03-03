@@ -1,0 +1,32 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.hero {
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    .hero--titulo {
+        @include tipografia(null, null, var(--font-size-hero), 900, null, -0.05em);
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-sub {
+        @include tipografia(var(--color-primary), null, var(--font-size-sm), 700, uppercase, 4px);
+        margin-top: 2rem;
+        z-index: 2;
+    }
+
+    .glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        @include glow(80vw, 80vh, var(--color-primary), 0.30, 120px)
+    }
+}
+
+

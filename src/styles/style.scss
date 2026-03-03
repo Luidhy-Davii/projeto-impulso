@@ -1,0 +1,21 @@
+@charset "utf-8";
+// Importandos os arquivos
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/utilities';
+
+@use 'components/loader';
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/faixa';
+@use './components/timeline';
+
+@use 'layout/header';
+@use 'layout/hero';
+@use 'layout/section-drop';
+@use 'layout/section-sobre';
+@use './layout/section-manifesto';
+@use 'layout/footer';

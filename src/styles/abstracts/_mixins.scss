@@ -1,0 +1,51 @@
+// _mixins.scss
+@use './variables' as *;
+@mixin desktop {
+  @media (min-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin tipografia ($color, $tipo-fonte, $tamanho-fonte, $peso-fonte, $tipo-letra, $espacamento-fonte){
+  color: $color;
+  font-family: $tipo-fonte;
+  font-size: $tamanho-fonte;
+  font-weight: $peso-fonte;
+  text-transform: $tipo-letra;
+  letter-spacing: $espacamento-fonte;
+}
+
+@mixin glow($largura, $altura, $cor, $opacidade, $blur){
+      width: $largura; 
+      height: $altura; 
+      background: radial-gradient(circle, $cor 0%, rgba(0, 0, 0, 0) 70%); 
+      opacity: $opacidade; 
+      filter: blur($blur); 
+}
+
+@mixin centralizar(){
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+
+@mixin laser($largura, $altura, $cor){
+   &::before {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: $largura; // Linha centralizada
+        height: $altura;
+        background: linear-gradient(90deg, transparent, $cor, transparent);
+        box-shadow: 0 0 50px var(--color-primary-glow); // Apenas para dá um efeto de sombra.
+    }
+}

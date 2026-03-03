@@ -1,0 +1,87 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// FAIXA EM MOVIMENTO (Gradiente com Paleta Oficial: Laranja, Branco e Cinza)
+// ==========================================================================
+.marquee-section {
+    background: var(--color-bg-main); // Fundo escuro original
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 3rem 0; 
+    overflow: hidden; 
+    position: relative;
+    display: flex;
+    width: 100%;
+    z-index: 5;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem; 
+    padding-right: 4rem; 
+
+    span {
+        font-family: var(--font-display);
+        font-size: clamp(4rem, 8vw, 8rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        white-space: nowrap;
+        cursor: default;
+        transition: all 0.4s var(--ease-smooth);
+
+        // ==========================================
+        // GRADIENTE ANIMADO (Apenas Laranja, Branco e Cinza)
+        // ==========================================
+        background: linear-gradient(
+            to right, 
+            var(--color-primary) 0%,   // Laranja Impulso
+            var(--color-white) 30%,    // Branco Puro (Pico de luz)
+            var(--color-gray) 50%,     // Cinza (Sombra metálica)
+            var(--color-white) 70%,    // Branco Puro (Pico de luz)
+            var(--color-primary) 100%  // Laranja Impulso (Fecha o loop perfeitamente)
+        );
+        background-size: 200% auto;
+        
+        // Aplica o fundo APENAS dentro das letras
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        // Animação que faz a luz correr pelo texto
+        animation: colorFlow 4s linear infinite;
+
+        // ==========================================
+        // INTERAÇÃO AO PASSAR O MOUSE
+        // ==========================================
+        &:hover {
+            transform: scale(1.05) skewX(-5deg); // Dá uma leve inclinada de velocidade
+            // Um brilho (Glow) exclusivamente Laranja
+            filter: drop-shadow(0 0 25px rgba(255, 88, 0, 0.4)); 
+        }
+
+        // Estilização das bolinhas separadoras
+        .point--color {
+            // Fixa a bolinha no Laranja Impulso para não sumir no fundo
+            -webkit-text-fill-color: var(--color-primary);
+            color: var(--color-primary);
+            margin: 0 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 88, 0, 0.3));
+        }
+    }
+}
+
+// Keyframe que faz o gradiente andar
+@keyframes colorFlow {
+    to {
+        background-position: 200% center;
+    }
+}

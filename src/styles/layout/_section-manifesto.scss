@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section-manifesto {
+    @include centralizar();
+    height: 100vh;
+    position: relative;
+    display: flex;
+
+    .manifesto-text h2 {
+        @include tipografia(var(--color-white), var(--font-display), clamp(3rem, 6vw, 7rem), 900, uppercase, null);
+        max-width: 900px;
+        padding: 0 2rem;
+        line-height: 1.1;
+
+        .span--color {
+            color: var(--color-primary);             
+            // Adiciona um brilho difuso atrás da letra para parecer "quente"
+            text-shadow: 0 0 30px var(--color-primary-glow); 
+        }
+    }
+}

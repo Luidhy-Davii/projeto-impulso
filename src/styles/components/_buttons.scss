@@ -1,0 +1,383 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ==========================================================================
+// 1. CTA BOX (Cards da Seção "Faça Parte")
+// ==========================================================================
+.cta-box {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(10, 10, 10, 0.8));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-card);
+    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.4s var(--ease-smooth);
+    position: relative;
+    overflow: hidden;
+    outline: none;
+
+    // Efeito de brilho (Glow) de fundo que acende no Hover
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        //importar o mixin glow
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, var(--glow-color) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.5s var(--ease-smooth);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &.primary-glow {
+        --glow-color: rgba(255, 88, 0, 0.08);
+        border-top: 1px solid rgba(255, 88, 0, 0.2);
+
+        .cta-icon-wrapper i {
+            color: var(--color-primary);
+            filter: drop-shadow(0 0 10px rgba(255, 88, 0, 0.4));
+        }
+    }
+
+    &.secondary-glow {
+        --glow-color: rgba(112, 0, 255, 0.12);
+        border-top: 1px solid rgba(112, 0, 255, 0.3);
+
+        .cta-icon-wrapper i {
+            color: #A855F7;
+            filter: drop-shadow(0 0 12px rgba(112, 0, 255, 0.8));
+        }
+    }
+
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        border-color: rgba(255, 255, 255, 0.1);
+
+        &::before {
+            opacity: 1;
+        }
+
+        .cta-icon-wrapper {
+            transform: scale(1.1);
+            background: var(--color-card-glass);
+        }
+    }
+
+    >* {
+        z-index: 1;
+        position: relative;
+    }
+
+    .cta-icon-wrapper {
+        width: clamp(60px, 8vw, 80px);
+        height: clamp(60px, 8vw, 80px);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        border: 1px solid var(--color-border);
+        transition: all 0.4s var(--ease-smooth);
+
+        i {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+        }
+    }
+
+    .cta-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size-xl);
+        color: var(--color-white);
+        margin: 0;
+        word-break: break-word;
+    }
+
+    .cta-desc {
+        color: var(--color-gray);
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        flex: 1;
+    }
+
+    .cta-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+        margin-top: auto;
+    }
+}
+
+// ==========================================================================
+// 2. BOTÕES GERAIS (CTAs)
+// ==========================================================================
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    min-height: 54px; // Área de toque acessível para mobile
+    padding: 1.2rem 2rem;
+    border-radius: var(--border-radius-pill);
+    text-decoration: none;
+    transition: all 0.3s var(--ease-smooth);
+    white-space: nowrap; // Impede quebra de linha feia
+    outline: none;
+    @include tipografia(null, null, var(--font-size-xs), 700, uppercase, 1px);
+
+    i {
+        font-size: 1.4em;
+        color: inherit;
+    }
+
+    &.btn-solid {
+        background: var(--color-primary);
+        color: var(--color-preto);
+        border: 1px solid var(--color-primary);
+
+        &:hover,
+        &:focus-visible {
+            background: transparent;
+            color: var(--color-primary);
+            box-shadow: 0 0 25px rgba(255, 88, 0, 0.2);
+        }
+    }
+
+    &.btn-outline {
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--color-white);
+        border: 1px solid var(--color-border);
+
+        &:hover,
+        &:focus-visible {
+            border-color: var(--color-secondary);
+            color: var(--color-white);
+            background: rgba(112, 0, 255, 0.1);
+            transform: translateX(5px);
+        }
+    }
+}
+
+// Botão de SOS / Alerta
+.sos-btn {
+    color: var(--color-alert);
+    font-weight: 700;
+    border: 1px solid var(--color-alert);
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-smooth);
+
+    &:hover,
+    &:focus-visible {
+        background: var(--color-alert);
+        color: var(--color-white);
+        box-shadow: 0 5px 20px rgba(255, 51, 51, 0.3);
+        transform: translateY(-2px);
+    }
+}
+
+// ==========================================================================
+// 3. SEÇÃO DE IGNIÇÃO (Efeito Cinematográfico)
+// ==========================================================================
+.ignition-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    min-height: 100dvh;
+    background: var(--color-bg-main);
+    border-top: 1px solid var(--color-border);
+    z-index: 1;
+
+    // A Luz Laranja que expande suavemente no fundo
+    .ignition-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100vw;
+        height: 100vh;
+        transform: translate(-50%, -50%) scale(0.5);
+        // Um gradiente radial laranja que some nas bordas
+        background: radial-gradient(circle, rgba(255, 88, 0, 0.15) 0%, transparent 70%);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 0;
+        transition: transform 2s var(--ease-smooth), opacity 1.5s ease;
+
+        // Quando ativado pelo JS
+        &.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.5); // Engole a tela suavemente
+        }
+    }
+
+    .ignition-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    .ignition-btn {
+        background: rgba(255, 88, 0, 0.05);
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+        padding: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 5vw, 6rem);
+        font-size: var(--font-size-lg);
+        font-family: var(--font-display);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: var(--border-radius-pill);
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        box-shadow: 0 0 20px rgba(255, 88, 0, 0.2), inset 0 0 10px rgba(255, 88, 0, 0.1);
+        // Transição suave para quando ele sumir
+        transition: all 0.6s var(--ease-smooth);
+
+        i {
+            font-size: 1.3em;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover,
+        &:focus-visible {
+            background: var(--color-primary);
+            color: var(--color-preto);
+            box-shadow: 0 0 50px rgba(255, 88, 0, 0.6);
+            transform: scale(1.05);
+
+            i {
+                color: var(--color-preto);
+                transform: scale(1.2);
+            }
+        }
+
+        // Dissolve o botão em vez de só sumir do nada
+        &.hidden {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            filter: blur(5px);
+            pointer-events: none;
+            position: absolute;
+        }
+    }
+
+    // A Mensagem que aparece revelada
+    .hidden-message {
+        opacity: 0;
+        visibility: hidden;
+        // Começa mais embaixo e desfocada
+        transform: translateY(30px) scale(0.98);
+        filter: blur(10px);
+        transition: all 1s var(--ease-smooth); // Transição longa e macia
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--spacing-sm);
+        position: relative;
+        z-index: 20;
+
+        // Classe gerenciada via JS
+        &.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            filter: blur(0); // Foco nítido
+        }
+
+        .ignition-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 8rem);
+            color: var(--color-white);
+            margin: 0;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .ignition-subtitle {
+            color: var(--color-gray);
+            font-size: var(--font-size-md);
+            max-width: 600px;
+            margin: 0 auto var(--spacing-md);
+        }
+    }
+}
+
+// Clarão de fundo (Ativado pelo JS)
+.ignition-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    // MUDANÇA CRÍTICA: Começa zerado e invisível
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    // MUDANÇA CRÍTICA: Usar cor branca pura
+    background: #ffffff;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+
+    // A classe que o JS adiciona
+    &.explode {
+        animation: flashBang 0.8s var(--ease-smooth) forwards;
+    }
+}
+
+
+// ==========================================================================
+// KEYFRAMES (ANIMAÇÕES) - Ajuste Fino
+// ==========================================================================
+@keyframes flashBang {
+
+    // O clarão pisca forte e rápido no começo (em 30% do tempo) e depois some
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+        background: #ffffff;
+    }
+
+    // Pisca branco forte no ápice
+    100% {
+        transform: translate(-50%, -50%) scale(250);
+        opacity: 0;
+    }
+
+    // Some gigante
+}

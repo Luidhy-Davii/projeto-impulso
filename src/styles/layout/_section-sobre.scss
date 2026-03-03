@@ -1,0 +1,48 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+// Sessão sobre 
+.pinned-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg); // Cria respiro entre as colunas
+
+    // RESPONSIVO: MOBILE
+    @media (max-width: $mobile) {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center; // Centraliza tudo no celular
+    }
+}
+
+.text-col {
+    width: 50%;
+
+    .title-left {
+        text-align: left;
+    }
+
+    @media (max-width: $mobile) {
+        width: 100%;
+        
+        // No celular, fica mais bonito centralizado
+        .title-left {
+            text-align: center;
+        }
+    }
+}
+
+.visual-col {
+    width: 45%;
+
+    @media (max-width: $mobile) {
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
+
+.texto--sobre {
+    @include tipografia(var(--color-gray), null, var(--font-size-md), null, null, null);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}

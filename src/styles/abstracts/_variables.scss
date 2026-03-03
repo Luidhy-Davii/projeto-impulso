@@ -1,0 +1,82 @@
+@charset 'utf-8';
+// Espaço de variáveis
+// Breakpoints
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1440px;
+
+// Z-Index (Camadas)
+$z-negative: -1;
+$z-normal: 1;
+$z-header: 100;
+$z-overlay: 200;
+$z-noise: 9000;
+$z-loader: 9999;
+
+:root {
+    // Paleta principal
+    --color-bg-main: #030303;
+    --color-bg-secondary: #0A0A0A;
+    --color-primary: #FF5800;
+    --color-primary-glow: rgba(255, 88, 0, 0.5); 
+    --color-secondary: #7000FF; // 
+    --color-white: #ffffff;
+    --color-gray: #888888;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-card-glass: rgba(255, 255, 255, 0.02); // Efeito vidro moderno
+    --color-preto: #000000;
+    
+    // Paleta funcional
+    --color-alert: #FF3333;
+    --color-success: #00CC99;
+    --color-info: #00CCFF;  
+    --background-sos: rgba(255, 51, 51, 0.05);
+    --border-sos: rgba(255, 51, 51, 0.3);
+ 
+    //Fontes
+    --font-display: 'Space Grotesk', sans-serif; // Titulos
+    --font-body: 'Inter', sans-serif; // Paragrafos, links e botões
+   
+    // Tamanhos de fonte (Escala modular)
+    // Legendas e detalhes (Mobile: 14px -> Desktop: 16px)
+    --font-size-xs: clamp(1.4rem, 1.3rem + 0.25vw, 1.6rem);
+    
+    // Texto auxiliar / Links (Mobile: 16px -> Desktop: 20px)
+    --font-size-sm: clamp(1.6rem, 1.4rem + 1vw, 2.0rem);
+    
+    // Corpo padrão - Textos longos (Mobile: 18px -> Desktop: 20px)
+    --font-size-md: clamp(1.8rem, 1.6rem + 0.5vw, 2.0rem);
+    
+    // Destaques / Subtítulos pequenos (Mobile: 22px -> Desktop: 26px)
+    --font-size-lg: clamp(2.2rem, 2.0rem + 0.5vw, 2.6rem);
+    
+    // Títulos de Cards (Mobile: 26px -> Desktop: 32px)
+    --font-size-xl: clamp(2.6rem, 2.3rem + 0.75vw, 3.2rem);
+    
+    // Títulos de Seção (Mobile: 36px -> Desktop: 48px)
+    --font-size-xxl: clamp(3.6rem, 3.0rem + 1.5vw, 4.8rem);
+    
+    // Títulos Maiores / Manifesto (Mobile: 42px -> Desktop: 70px) - Bug corrigido
+    --font-size-xxxl: clamp(4.2rem, 3.5rem + 2.5vw, 7.0rem);
+    
+    // HERO Gigante (Mobile: 55px -> Desktop: 120px) - Mais presença e impacto no celular
+    --font-size-hero: clamp(5.5rem, 4.0rem + 8vw, 12.0rem);
+
+    // Espaçamento
+    --spacing-xs: 0.4rem;
+    --spacing-sm: clamp(1.5rem, 1rem + 1vw, 2.0rem); 
+    
+    --spacing-md: clamp(3.0rem, 2rem + 2vw, 5.0rem); 
+    --spacing-lg: clamp(5.0rem, 4rem + 3vw, 8.0rem);
+    --spacing-section: clamp(8.0rem, 6rem + 5vw, 15.0rem); 
+
+    // Layou e shape
+    --header-height: 80px;
+    --container-max: 1200px;
+    --border-radius-sm: 4px;
+    --border-radius-card: 16px;
+    --border-radius-pill: 50px; 
+
+    // Animação
+    --ease-smooth: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
