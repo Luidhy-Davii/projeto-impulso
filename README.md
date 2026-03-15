@@ -34,4 +34,4 @@ Como o projeto utiliza SCSS, você precisará compilar os arquivos para CSS puro
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/SEU-USUARIO/projeto-impulso.git](https://github.com/SEU-USUARIO/projeto-impulso.git)
+   git clone [https://github.com/Luidhy-Davii/projeto-impulso.git](https://github.com/Luidhy-Davii/projeto-impulso.git)
