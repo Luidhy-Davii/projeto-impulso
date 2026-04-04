@@ -1,0 +1,178 @@
+@use '../../../styles/abstracts/variables' as *;
+
+.pagina-oracao {
+    background: #050505;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.oracao-nav {
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+    .botao-sair {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 900;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        transition: 0.3s;
+
+        &:hover {
+            color: var(--color-primary);
+        }
+    }
+}
+
+// SETUP
+.tela-setup {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+
+    .titulo-setup {
+        font-size: clamp(3rem, 8vw, 5rem);
+        text-transform: uppercase;
+        font-weight: 900;
+        margin-bottom: 1rem;
+    }
+
+    .seletor-tempo {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+
+    .botao-tempo {
+        background: transparent;
+        border: 1px solid #333;
+        color: #fff;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        border-radius: 8px;
+        font-family: inherit;
+        transition: 0.3s;
+
+        &.ativo {
+            border-color: var(--color-primary);
+            background: rgba(255, 88, 0, 0.1);
+        }
+    }
+
+    .botao-iniciar {
+        padding: 1.2rem 4rem;
+        background: #fff;
+        border: none;
+        font-weight: 900;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 50px;
+        transition: 0.3s;
+
+        &:hover {
+            transform: scale(1.05);
+            background: var(--color-primary);
+            color: #fff;
+        }
+    }
+}
+
+// ORAÇÃO ATIVA
+.tela-oracao {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+
+    &.ativa {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.circulo-respiracao {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.svg-progresso {
+    position: absolute;
+    transform: rotate(-90deg);
+    width: 320px;
+    height: 320px;
+
+    circle {
+        fill: none;
+        stroke: var(--color-primary);
+        stroke-width: 3;
+        stroke-dasharray: 942;
+        stroke-dashoffset: 942; // Controlado pelo JS
+        stroke-linecap: round;
+    }
+}
+
+.ponto-central {
+    width: 20px;
+    height: 20px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 30px var(--color-primary);
+}
+
+.conteudo-fase {
+    margin-top: 4rem;
+    text-align: center;
+    max-width: 600px;
+    padding: 0 2rem;
+
+    .fase-label {
+        color: var(--color-primary);
+        font-weight: 700;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .fase-titulo {
+        font-size: 3.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .fase-desc {
+        color: #888;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+}
+
+.cronometro {
+    position: absolute;
+    bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #333;
+}
