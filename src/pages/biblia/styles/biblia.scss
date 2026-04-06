@@ -5,7 +5,6 @@
     --bg: #050505;
     --text: #e0e0e0;
     --highlight: #FF5800;
-    /* Laranja Fogo */
     --secondary: #7000FF;
     --card-surface: #0f0f0f;
     --font-head: 'Space Grotesk', sans-serif;
@@ -25,7 +24,7 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER */
+/* HEADER & NAV */
 nav {
     padding: 2rem 5%;
     position: fixed;
@@ -35,6 +34,11 @@ nav {
     justify-content: space-between;
     z-index: 100;
     mix-blend-mode: difference;
+
+    .nav-tag {
+        font-weight: bold;
+        color: #555;
+    }
 }
 
 .back-btn {
@@ -44,10 +48,10 @@ nav {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: 0.3s;
-}
 
-.back-btn:hover {
-    color: var(--highlight);
+    &:hover {
+        color: var(--highlight);
+    }
 }
 
 /* HERO */
@@ -60,15 +64,27 @@ nav {
     text-align: center;
     position: relative;
     padding: 0 2rem;
-}
 
-h1 {
-    font-family: var(--font-head);
-    font-size: clamp(4rem, 10vw, 8rem);
-    line-height: 0.9;
-    text-transform: uppercase;
-    max-width: 900px;
-    z-index: 2;
+    h1 {
+        font-family: var(--font-head);
+        font-size: clamp(4rem, 10vw, 8rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+        max-width: 900px;
+        z-index: 2;
+    }
+
+    .hero-tag {
+        margin-top: 2rem;
+        font-size: 1.4rem;
+        color: #888;
+        letter-spacing: 2px;
+    }
+
+    .icon-scroll {
+        margin-top: 3rem;
+        font-size: 2rem;
+    }
 }
 
 /* HIGHLIGHTER EFFECT */
@@ -76,24 +92,24 @@ h1 {
     position: relative;
     display: inline-block;
     color: #fff;
-}
 
-.highlight::after {
-    content: '';
-    position: absolute;
-    left: -5px;
-    bottom: 5px;
-    height: 30%;
-    width: 0%;
-    background: var(--highlight);
-    z-index: -1;
-    transition: width 0.8s ease-in-out;
-    opacity: 0.8;
-    transform: skewX(-10deg);
-}
+    &::after {
+        content: '';
+        position: absolute;
+        left: -5px;
+        bottom: 5px;
+        height: 30%;
+        width: 0%;
+        background: var(--highlight);
+        z-index: -1;
+        transition: width 0.8s ease-in-out;
+        opacity: 0.8;
+        transform: skewX(-10deg);
+    }
 
-.highlight.active::after {
-    width: 105%;
+    &.active::after {
+        width: 105%;
+    }
 }
 
 /* CONTAINER GERAL */
@@ -110,39 +126,40 @@ h1 {
     transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transform: scale(0.95);
     filter: blur(2px);
+
+    &.active {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+
+    .step-number {
+        font-family: var(--font-head);
+        font-size: 8rem;
+        color: #1a1a1a;
+        font-weight: 900;
+        line-height: 0.5;
+        margin-left: -5px;
+    }
+
+    h2 {
+        font-family: var(--font-head);
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        color: #fff;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        line-height: 1.1;
+    }
+
+    p {
+        font-size: 1.8rem;
+        line-height: 1.8;
+        color: #bbb;
+        margin-bottom: 2rem;
+    }
 }
 
-.step.active {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-}
-
-.step-number {
-    font-family: var(--font-head);
-    font-size: 8rem;
-    color: #1a1a1a;
-    font-weight: 900;
-    line-height: 0.5;
-    margin-left: -5px;
-}
-
-.step h2 {
-    font-family: var(--font-head);
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    color: #fff;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-    line-height: 1.1;
-}
-
-.step p {
-    font-size: 1.8rem;
-    line-height: 1.8;
-    color: #bbb;
-    margin-bottom: 2rem;
-}
-
+/* BOXES & CARDS */
 .tip-box {
     border-left: 4px solid var(--highlight);
     padding-left: 2rem;
@@ -150,14 +167,22 @@ h1 {
     padding: 2.5rem;
     border-radius: 0 16px 16px 0;
     margin-top: 2rem;
-}
 
-.tip-box strong {
-    color: #fff;
-    display: block;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    strong {
+        color: #fff;
+        display: block;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    &--secondary {
+        border-color: var(--secondary);
+    }
+
+    &--white {
+        border-color: #fff;
+    }
 }
 
 .version-grid {
@@ -173,32 +198,62 @@ h1 {
     border-radius: 8px;
     border: 1px solid #333;
     transition: 0.3s;
+
+    &:hover {
+        border-color: var(--highlight);
+        transform: translateY(-5px);
+    }
+
+    h4 {
+        color: var(--highlight);
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #888;
+        margin: 0;
+    }
+
+    &--link {
+        text-decoration: none;
+    }
 }
 
-.v-card:hover {
-    border-color: var(--highlight);
-    transform: translateY(-5px);
+/* METODO S.O.A.P LIST */
+.method-list {
+    list-style: none;
+    font-size: 1.6rem;
+    line-height: 2;
+    color: #ddd;
+
+    .accent {
+        color: var(--highlight);
+    }
 }
 
-.v-card h4 {
-    color: var(--highlight);
-    margin-bottom: 0.5rem;
-}
-
-.v-card p {
-    font-size: 1.2rem;
-    color: #888;
-    margin: 0;
-}
-
-/* --- O ROADMAP (ESTILOS ESPECÍFICOS) --- */
+/* ROADMAP */
 .roadmap-container {
     margin-top: 20rem;
     margin-bottom: 10rem;
     opacity: 1 !important;
-    /* Força visibilidade */
     filter: none !important;
     transform: none !important;
+}
+
+.roadmap-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.roadmap-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.roadmap-subtitle {
+    font-size: 1.2rem;
+    color: #888;
 }
 
 .phase-title {
@@ -217,6 +272,7 @@ h1 {
     gap: 1.5rem;
 }
 
+/* BOOK CARDS */
 .book-card {
     background: var(--card-surface);
     border: 1px solid #333;
@@ -230,40 +286,39 @@ h1 {
     justify-content: space-between;
     min-height: 140px;
     opacity: 1;
-    /* Padrão visível */
-}
 
-.book-card:hover {
-    border-color: var(--highlight);
-    background: #151515;
-    transform: translateY(-5px);
-}
+    &:hover {
+        border-color: var(--highlight);
+        background: #151515;
+        transform: translateY(-5px);
+    }
 
-.book-number {
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.03);
-    position: absolute;
-    right: 5px;
-    top: -10px;
-    line-height: 1;
-    pointer-events: none;
-}
+    .book-number {
+        font-size: 5rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.03);
+        position: absolute;
+        right: 5px;
+        top: -10px;
+        line-height: 1;
+        pointer-events: none;
+    }
 
-.book-title {
-    font-family: var(--font-head);
-    font-size: 1.8rem;
-    color: #fff;
-    font-weight: 700;
-    z-index: 2;
-    margin-bottom: 0.5rem;
-}
+    .book-title {
+        font-family: var(--font-head);
+        font-size: 1.8rem;
+        color: #fff;
+        font-weight: 700;
+        z-index: 2;
+        margin-bottom: 0.5rem;
+    }
 
-.book-chapters {
-    font-size: 0.9rem;
-    color: var(--highlight);
-    font-weight: bold;
-    text-transform: uppercase;
+    .book-chapters {
+        font-size: 0.9rem;
+        color: var(--highlight);
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 }
 
 .status-dot {
@@ -274,7 +329,7 @@ h1 {
     margin-top: auto;
 }
 
-/* A ROTINA (BOX) */
+/* ROUTINE BOX */
 .routine-box {
     background: linear-gradient(135deg, #1a1a1a, #000);
     border: 1px solid var(--highlight);
@@ -282,14 +337,25 @@ h1 {
     border-radius: 20px;
     text-align: center;
     margin: 3rem 0;
-}
 
-.routine-number {
-    font-size: 6rem;
-    font-weight: 900;
-    color: var(--highlight);
-    line-height: 1;
-    font-family: var(--font-head);
+    .routine-number {
+        font-size: 6rem;
+        font-weight: 900;
+        color: var(--highlight);
+        line-height: 1;
+        font-family: var(--font-head);
+    }
+
+    .routine-text {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    .routine-subtext {
+        margin-top: 1rem;
+        color: #888;
+    }
 }
 
 /* PROGRESS & CTA */
@@ -315,6 +381,10 @@ h1 {
     padding-bottom: 10rem;
     opacity: 1 !important;
     filter: none !important;
+
+    .final-title {
+        font-size: 4rem;
+    }
 }
 
 .btn-bible {
@@ -330,15 +400,15 @@ h1 {
     text-transform: uppercase;
     border-radius: 50px;
     transition: 0.3s;
-}
 
-.btn-bible:hover {
-    background: var(--highlight);
-    transform: scale(1.05);
+    &:hover {
+        background: var(--highlight);
+        transform: scale(1.05);
+    }
 }
 
 @media (max-width: 768px) {
-    h1 {
+    .hero h1 {
         font-size: 14vw;
     }
 
