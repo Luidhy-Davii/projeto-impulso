@@ -17,6 +17,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: var(--bg);
     color: var(--text);
@@ -54,6 +58,20 @@ nav {
     }
 }
 
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 /* HERO */
 .hero {
     height: 100vh;
@@ -61,6 +79,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: var(--spacing-sm);
     text-align: center;
     position: relative;
     padding: 0 2rem;
@@ -75,15 +94,27 @@ nav {
     }
 
     .hero-tag {
-        margin-top: 2rem;
         font-size: 1.4rem;
         color: #888;
         letter-spacing: 2px;
     }
 
+    .scroll-hero {
+        text-decoration: none;
+        color: var(--white);
+        display: inline-block;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            color: var(--highlight);
+            transform: scale(1.1);
+        }
+    }
+
     .icon-scroll {
-        margin-top: 3rem;
-        font-size: 2rem;
+        font-size: 2.5rem;
+        animation: floating 2s ease-in-out infinite;
+        display: block;
     }
 }
 
